@@ -1,0 +1,142 @@
+body{
+    background-color: #fff;
+}
+
+.card{
+    background: #8B0000;
+    width: 300px;
+    margin:auto;
+    margin-top: 8%;
+    text-align: center;
+    padding: 5px 40px;
+    box-shadow: 0 0 25px #0007;
+    border-radius: 2%;
+    display: inline-block;
+}
+
+.card-blue{
+    background: #0ee8;
+        width: 300px;
+    margin:auto;
+    margin-top: 8%;
+    text-align: center;
+    padding: 5px 40px;
+    box-shadow: 0 0 25px #0007;
+    border-radius: 2%
+}
+
+.card-yellow{
+    background: #FFFF00;
+        width: 300px;
+    margin:auto;
+    margin-top: 8%;
+    text-align: center;
+    padding: 5px 40px;
+    box-shadow: 0 0 25px #0007;
+    border-radius: 2%
+}
+
+.card .titulo{
+    color: aliceblue;
+    font-family: "Montserrat";
+    font-weight: 700px;
+    font-style: italic;
+    padding-top: 3px;
+    text-decoration: underline;
+}
+
+.card-blue .titulo{
+    color: rgb(5, 43, 77);
+    font-family: "Montserrat";
+    font-weight: 700px;
+    font-style: italic;
+    padding-top: 3px;
+    text-decoration: underline;
+}
+.card-yellow .titulo{
+    color: aliceblue;
+    font-family: "Montserrat";
+    font-weight: 700px;
+    font-style: italic;
+    padding-top: 3px;
+    text-decoration: underline;
+}
+
+.card .subtitulo{
+    color: rgb(123, 183, 236);
+    font-family: "Montserrat";
+    font-weight: 500px;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+.card-blue .subtitulo{
+    color: rgb(123, 183, 236);
+    font-family: "Montserrat";
+    font-weight: 500px;
+    font-style: italic;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #000;
+}
+.card-yellow .subtitulo{
+    color: rgb(123, 183, 236);
+    font-family: "Montserrat";
+    font-weight: 500px;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+.card .parrafo{
+    color: #000;
+    text-shadow: 0 0 8px #000e;
+    font-family: "Montserrat";
+    font-weight: 400px;
+    font-size: 20px;
+    padding: 10px;
+    background: #CD5C5C;
+    text-align: justify;
+}
+
+.card-blue .parrafo{
+    color: #000;
+    text-shadow: 0 0 8px #000e;
+    font-family: "Montserrat";
+    font-weight: 400px;
+    font-size: 20px;
+    padding: 10px;
+    background: #4169E1;
+    text-align: justify;
+}
+
+.card-yellow .parrafo{
+    color: #000;
+    text-shadow: 0 0 8px #000e;
+    font-family: "Montserrat";
+    font-weight: 400px;
+    font-size: 20px;
+    padding: 10px;
+    background: #C99700;
+    text-align: justify;
+}
+
+.img-p5{
+    width: 100px;
+    margin: auto;
+    margin-top: 30px;
+    border: 5px solid #999;
+    border-radius: 5%;
+}
+
+.img-p4{
+    width: 100px;
+    margin: auto;
+    margin-top: 30px;
+    border: 5px solid #999;
+    border-radius: 5%;
+}
+
+.img-p3{
+    width: 100px;
+    margin: auto;
+    margin-top: 30px;
+    border: 5px solid #999;
+    border-radius: 5%;
+}

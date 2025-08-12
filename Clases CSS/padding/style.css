@@ -1,0 +1,13 @@
+.formulario{
+    background-color: brown;
+    padding: 10;
+    padding-bottom: 30px;
+}
+
+.input{
+    padding: 10px;
+}
+body{
+    background-color: aquamarine;
+    height: 100px;
+}

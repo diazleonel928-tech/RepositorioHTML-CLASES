@@ -1,0 +1,42 @@
+
+h1{
+    background-color: coral;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+    font-style: italic;
+    }
+    .separador1 p.texto1{
+        background-color: rgb(20, 194, 194);
+    }
+    .separador2 p.texto1{
+        background-color: rgb(146, 146, 37);
+    }
+h2{
+    background-color: blueviolet;
+    color:aliceblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: oblique;
+}
+span{
+    background-color: bisque;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+li{
+    color:brown;
+}
+.ejemplo1{
+    background-color: darkgoldenrod;
+}
+#ejemploID{
+    color:red;
+}
+#titulo-principal{
+    color:blue;
+}
+#intro{
+    background-color: aqua;
+}
+#campo-nombre{
+    font-family: 'Courier New', Courier, monospace;
+    color: chocolate;
+}

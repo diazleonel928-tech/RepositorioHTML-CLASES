@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+}
+
+div{
+    background-color: antiquewhite;
+    padding: 0.2in;
+    font-family: Montserrat;
+    border-left: 8px solid #fabd99;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+}
+
+span{
+    font-size: 16px;
+    font-weight: 100;
+    color: #fabd99;
+    margin: 0;
+
+}
+
+h1{
+    margin: 0;
+}

@@ -1,0 +1,10 @@
+body{
+    background-color: #FFA500;
+}
+
+.image{
+    background: url("https://wallpapers.com/images/hd/persona-joker-in-red-8wcs70zqsgqncqjl.jpg") cover center center fixed;
+    background-color: aqua;
+    width: 500px;
+    height: 250px;
+}

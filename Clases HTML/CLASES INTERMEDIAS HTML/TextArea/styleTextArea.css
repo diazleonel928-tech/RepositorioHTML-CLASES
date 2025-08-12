@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+    background:linear-gradient( #555, #222);
+}
+
+h2{
+    text-align: center;
+    font-family: "Montserrat";
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 22px;
+}
+
+input, textarea, select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: none;
+    border: 2px solid #4f9;
+    border-radius: 15px;
+    background: transparent;
+    color:#4f9;
+}
+
+option{
+    background: #555;
+}
+
+.form_input{
+    padding: 6px 10px;
+}
+
+form{
+    background: #958b8b;
+    padding: 20px 0;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 32px #0002;
+    margin-top: 50px;
+    color: #eee;
+    border-radius: 10px;
+}
+
+textarea{
+    font-family: "Montserrat";
+    font-weight: 400;
+    min-width: 100%;
+    resize: none;
+    min-height: 100px;
+    max-width: 200px;
+    
+}
+
+label{
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 0.9em;
+    line-height: 2;
+}
+
+.checkbox{
+    width: auto;
+    height: 10px;
+}
+
+fieldset{
+    margin: 20px 0;
+}
+
+legend{
+    font-weight: 400px;
+    padding: 0 6px;
+    border: 6px double #ddd6;
+}

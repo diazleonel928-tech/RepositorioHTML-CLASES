@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    background-color: #555;
+}
+
+h2{
+    text-align: center;
+    font-family: "Montserrat";
+    font-weight: 400;
+    text-decoration: underline;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 22px;
+}
+
+input, textarea, select{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: none;
+    border: 2px solid #fff;
+    box-shadow: 0 0 15px #0003;
+    border-radius: 15px;
+    background: transparent;
+    color:#fff;
+    margin: 12px 0;
+}
+
+form{
+    background: #958b8b;
+    padding: 10px 20px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 32px #0002;
+    color: #eee;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+fieldset{
+    margin: 20px 0;
+}
+
+legend{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(82, 73, 73);
+    font-weight: 400px;
+    padding: 0 6px;
+    border: 6px double #ddd6;
+}

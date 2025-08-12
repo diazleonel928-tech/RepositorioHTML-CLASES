@@ -1,0 +1,32 @@
+.box{
+    background: linear-gradient(45deg,red,green);
+    width: 300px;
+    height: 300px;
+    margin: 30px;
+    color: aliceblue;
+}
+
+.box2{
+    background:
+    radial-gradient(ellipse at top, #e66465, transparent),
+    radial-gradient(ellipse at bottom, #4d9f0c, transparent);
+    width: 300px;
+    height: 300px;
+    margin: 30px;
+    color: aliceblue;
+}
+
+.box3{
+    background: conic-gradient(
+    red 6deg,
+    orange 6deg 18deg,
+    yellow 18deg 45deg,
+    green 45deg 110deg,
+    blue 110deg 200deg,
+    purple 200deg
+);
+    width: 300px;
+    height: 300px;
+    margin: 30px;
+    color: aliceblue;
+}

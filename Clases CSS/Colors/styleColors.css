@@ -1,0 +1,34 @@
+body{
+    background-color: bisque;
+}
+
+.box{
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.rgb-box{
+    background-color:rgb(184, 214, 38);
+    color:rgba(68, 100, 11, 0.685);
+    border: 6px double rgb(70, 82, 13);
+}
+
+.hex-box{
+    background-color: #4df9b0;
+    color: #0aad96;
+    border-top: 8px solid #6dfaf6;
+    border-right: 8px groove #0a927b;
+    border-bottom: 10px outset #075a4c;
+    border-left: 12px inset #87d4c7;
+}
+
+.hsl-box{
+    background-color:hsl(251, 95%, 32%);
+    color: hsl(279, 63%, 66%);
+    border: 50px 30px;
+    border-style: dashed;
+    border-color: hsl(283, 93%, 28%);
+}

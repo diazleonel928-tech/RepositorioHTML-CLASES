@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Este es un sitio web de ejemplo.">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Leox Lol">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleTextArea.css">
+    <link rel="stylesheet" href="../../../Clases HTML/CLASES INTERMEDIAS HTML/fonts.css">
+    <link rel="icon" href="../Metaetiquetas,ComentariosEtiquetas/icono.png" type="image/png">
+    <title>textarea</title>
+</head>
+<body>
+    <form>
+        <h2>Formulario con Textarea</h2>
+
+        <!--Labels-->
+
+        <div class="form_input">
+        <fieldset>
+            <legend>DATOS PERSONALES</legend>
+            <label for="nombre">Nombre completo</label>
+            <input type="text" placeholder="nombre ejemplo: POL DIAZ" id="nombre">
+            <label>Email
+            <input type="email" placeholder="ejemplo@gmail.com">
+            </label>
+        </fieldset>
+        </div>
+
+        <div class="form_input">
+            <!--SELECT Y OPTION-->
+        <fieldset>
+            <legend>OPCIONES CON OPTION</legend>
+            <label> opciones con option
+            <select name="type-of-user">
+                <option value="user1">op1</option>
+                <option value="user2">op2</option>
+                <option value="user3">op3</option>
+            </select>
+            </label>
+        </fieldset>
+        </div>
+
+        <div class="form_input">
+            <!--DATABASE-->
+        <fieldset>
+            <legend>OPCIONES CON DATALIST</legend>
+            <label> opciones con option para un datalist
+            <input list="referente">
+            <datalist id="referente" name="type-of-user">
+                <option value="opcion1">descripcion de opcion 1</option>
+                <option value="opcion2">descripcion de opcion 2</option>
+                <option value="opcion3">descripcion de opcion 3</option>
+            </datalist>
+            </label>
+        </fieldset>
+        </div>
+
+        <!--TEXTAREA-->
+
+        <div class="form_input">
+        <fieldset>
+            <legend>DESCRIPCION</legend>
+            <label>Descripcion
+            <textarea placeholder="escribe una descripcion de ti" name="comentario" rows="4" cols="50"></textarea>
+            </label>
+        </div>
+        <div class="form_input">
+            <label>Acepto terminos y condiciones
+            <input type="checkbox" class="checkbox">
+            </label>
+        </fieldset>
+        </div>
+    </form>
+</body>
+</html>

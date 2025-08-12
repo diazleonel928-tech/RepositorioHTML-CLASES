@@ -1,0 +1,11 @@
+.box{
+    background-color: aqua;
+    height: 150px;
+    width: 150px;
+    margin: 40px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}

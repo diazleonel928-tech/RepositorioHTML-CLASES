@@ -1,0 +1,78 @@
+body{
+    background-color: antiquewhite;
+}
+
+.titulo{
+    background-color: blue;
+    padding: 25px;
+    margin: 20px;
+    border-width: 20px;
+    border-color: brown;
+    border-style: solid;
+    border-radius: 10px 50px;
+}
+.subtitulo{
+    background-color: blueviolet;
+    padding: 20px;
+    margin: 20px;
+    border: 20px dashed cadetblue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.cubos .c1{
+    background-color: aqua;
+    padding: 20px;
+    margin: 20px;
+    border-width: 20px;
+    border-color: chocolate;
+    border-style: dotted;
+}
+.cubos .c2{
+    background-color: aqua;
+    padding: 20px;
+    margin: 10%;
+    border-width: 20px;
+    border-color: chocolate;
+    border-style: groove;
+}
+.cubos .c3{
+    background-color: aqua;
+    padding: 20px;
+    margin: 10%;
+    border-width: 20px;
+    border-color: chocolate;
+    border-style: double;
+    border-radius: 10px 65px 5px 0;
+}
+
+.cubos .c4{
+    background-color: aqua;
+    padding: 20px;
+    margin: 10%;
+    border-width: 20px;
+    border-color: chocolate;
+    border-style: inset;
+    border-radius: 20px;
+}
+.cubos .c5{
+    background-color: aqua;
+    padding: 20px;
+    margin: 20px;
+    border-width: 20px;
+    border-color: chocolate;
+    border-top: 10px solid black;
+    border-right: 10px dashed red;
+    border-bottom: 10px dotted blue;
+    border-left: 10px double green;
+    border-radius: 0 0 20px 20px;
+}
+.enlaces .video{
+    background-color: rgb(108, 108, 197);
+    padding: 20px;
+    margin: 50px;
+    border: none;
+    border: 12px 35px 0 12px;
+    border-style: dotted;
+    border-color: black;
+    
+}
