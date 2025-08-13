@@ -75,3 +75,8 @@ legend{
     padding: 0 6px;
     border: 6px double #ddd6;
 }
+
+a{
+    color: #349;
+    text-decoration: none;
+}

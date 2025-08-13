@@ -1,0 +1,78 @@
+body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: white;
+      padding: 3rem 1rem 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    h1 { margin: 0 0 0.5rem; font-size: clamp(1.8rem, 3vw, 2.4rem); }
+    .subtitle { margin: 0; opacity: 0.9; }
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: -1.25rem auto 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+    }
+    nav.toc a { color: var(--brand); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+    main {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      margin-bottom: 2rem;
+    }
+    h2 { margin-top: 2rem; font-size: 1.35rem; }
+    ul { padding-left: 1.2rem; }
+    .note {
+      background: #f1f5f9;
+      border-left: 4px solid var(--brand);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      color: #0f172a;
+      margin: 1rem 0 2rem;
+      font-size: 0.95rem;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 2rem 1rem 3rem;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+    .back:hover { text-decoration: underline; }
+    /* Estilos de impresión */
+    @media print {
+      header, nav.toc, .back { display: none; }
+      body { background: #fff; }
+      main { box-shadow: none; border: 0; padding: 0; }
+    }
+
+.descargable{
+    color: #36f;
+    font-style: italic;
+    text-decoration: underline;
+}
