@@ -8,12 +8,21 @@
     <meta name="author" content="Leox Lol">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleTabla.css">
+    <link rel="stylesheet" href="../fonts.css">
     <link rel="stylesheet" href="../../../Clases HTML/CLASES INTERMEDIAS HTML/fonts.css">
     <link rel="icon" href="../Metaetiquetas,ComentariosEtiquetas/icono.png" type="image/png">
     <title>Tablas</title>
 </head>
 <body>
     <table>
+        <thead>
+            <tr>
+                <th class="bold">Nombre</th>
+                <th class="bold">Apellido</th>
+                <th class="bold">Adejtivo</th>
+            </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>dato1</td>
             <td>dato2</td>
@@ -24,6 +33,13 @@
             <td>dato2.2</td>
             <td>dato2.3</td>
         </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="total">Total de datos</th>
+                <td colspan="2" class="total">2</td>
+            </tr>
+        </tfoot>
     </table>
 </body>
 </html>
