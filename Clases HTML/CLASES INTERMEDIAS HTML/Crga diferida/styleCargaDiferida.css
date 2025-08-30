@@ -1,0 +1,13 @@
+p{
+    font-size: 32px;
+    height: 200vh;
+    width: 200vw;
+    overflow: hidden;
+}
+
+img{
+    width: 500px;
+    border-radius: 25%;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px 0 #227D71;
+}

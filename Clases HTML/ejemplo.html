@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de ejemplo</title>
+  <!-- Estilos -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    header, footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: yellow;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    .icon {
+      margin-right: 10px;
+      color: #333;
+    }
+    footer p {
+      margin: 0;
+    }
+  </style>
+  <!-- Iconos (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Mi Página de Ejemplo</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio"><i class="fa fa-home icon"></i>Inicio</a></li>
+        <li><a href="#nosotros"><i class="fa fa-users icon"></i>Nosotros</a></li>
+        <li><a href="#servicios"><i class="fa fa-briefcase icon"></i>Servicios</a></li>
+        <li><a href="#contacto"><i class="fa fa-envelope icon"></i>Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section id="inicio">
+      <h2>Bienvenido</h2>
+      <p>Esta es una página de ejemplo que muestra cómo estructurar información en un sitio web básico.</p>
+      <img src="https://via.placeholder.com/600x300" alt="Imagen de ejemplo">
+    </section>
+
+    <section id="nosotros">
+      <h2>Sobre nosotros</h2>
+      <p>Somos una empresa dedicada a ofrecer soluciones digitales modernas y efectivas.</p>
+    </section>
+
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <ul>
+        <li><i class="fa fa-laptop-code icon"></i> Desarrollo Web</li>
+        <li><i class="fa fa-mobile-screen icon"></i> Aplicaciones móviles</li>
+        <li><i class="fa fa-cloud icon"></i> Servicios en la nube</li>
+      </ul>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>Puedes escribirnos a nuestro correo: <a href="mailto:info@ejemplo.com">info@ejemplo.com</a></p>
+      <p>Visita también nuestro <a href="https://www.google.com" target="_blank">sitio asociado</a>.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Mi Página Web - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
