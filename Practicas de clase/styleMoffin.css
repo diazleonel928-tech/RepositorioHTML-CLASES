@@ -1,0 +1,18 @@
+img{
+    width: 300px;
+    margin:auto;
+    border-radius: 15px;
+}
+body{
+    background-color: #96681E;
+    color: aliceblue;
+}
+
+.principal{
+    font-size: 30px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.Menu{
+    font-size: 20px;
+}

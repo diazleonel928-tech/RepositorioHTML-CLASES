@@ -1,0 +1,20 @@
+ul, li{
+    padding-bottom: 3px;
+}
+
+header{
+    font-family: "Montserrat" Georgia, 'Times New Roman', Times, serif;
+    font-style: bold;
+}
+
+body{
+    background-color: #96681E;
+    color: antiquewhite;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img{
+    width: 500px;
+    margin:auto;
+    border-radius: 15px;
+}

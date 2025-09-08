@@ -1,0 +1,15 @@
+header{
+    background-color: #8A5D06;
+    color:aliceblue;
+    border-radius: 10px;
+    padding: 5px;
+    font-style: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #CFBA72;
+}
+li{
+    font-size: 18px;
+}
