@@ -1,0 +1,31 @@
+table {
+    border-collapse: collapse;
+    width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+td {
+    border: 1px solid gray;
+    padding: 10px;
+}
+th {
+    border: 1px solid gray;
+    padding: 10px;
+    background-color: #e6e6e6;
+    }
+a{
+    width: 25px;
+}
+.home{
+    width: 25px;
+    height: 25px;
+}
+.foto{
+    width: 300px;
+    height: 300px;
+}
+h1{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+}
