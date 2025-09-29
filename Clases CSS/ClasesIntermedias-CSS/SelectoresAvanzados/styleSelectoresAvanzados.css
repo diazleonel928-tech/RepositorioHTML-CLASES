@@ -1,0 +1,29 @@
+body{
+    background-color: bisque;
+    font-family: 'Times New Roman', Times, serif;
+}
+ul > li{
+    color:grey;
+}
+
+h1, h2{
+    text-align: center;
+    background-color: aliceblue;
+}
+
+h2 ~ p{
+    color: blue;
+}
+
+img[src$="jpg"]{
+    margin:auto;
+    width: 100px;
+}
+
+.faltante{
+    color: red;
+}
+
+#secreto{
+    color: blue;
+}

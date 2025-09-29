@@ -1,0 +1,39 @@
+body{
+    background-color: antiquewhite;
+}
+
+*{
+    font-family:sans-serif;
+    font-weight: 400px;
+}
+
+.T{
+    
+    font-style: italic;
+}
+
+.S{
+    color: #ABAFB0;
+}
+
+img{
+    width: 100%;
+    border-bottom: 5px solid red;
+}
+
+.raya{
+    text-decoration: underline red;
+}
+
+.RB{
+    text-decoration: underline red;
+    font-weight: bold;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.Y{
+    color:#ABAFB0;
+}
