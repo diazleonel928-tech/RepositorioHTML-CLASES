@@ -38,3 +38,67 @@ li:last-child{
     color:#3e3;
 }
 
+div{
+    border: 2px, solid, #536;
+}
+
+div:empty{
+    border: none;
+}
+
+input{
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"]{
+    color:#239;
+    margin: 50px;
+}
+
+input[type="checkbox"]:checked{
+    color: #48e;
+    margin:0;
+}
+
+a:link{
+    color: #48e;
+    display: block;
+    margin-bottom: 10px;
+}
+
+a:visited{
+    color: #373;
+}
+
+input.CO:invalid{
+    color: #f00;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid blue;
+}
+
+input:valid{
+    color: #48e;
+}
+input.clave:placeholder-shown{
+    border: 2px, solid, #f00;
+}
+
+section :is(.l1, .l2, .l3){
+    color: #536;
+}
+
+label:has(+ input:focus) {
+    color: blue;
+}
+
+label:has(+ input:valid) {
+    color: green;
+}
+
+label:has(+ input:invalid) {
+    color: red;
+}
