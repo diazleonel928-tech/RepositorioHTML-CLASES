@@ -1,15 +1,44 @@
 body{
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-div{
-        padding: 20px;
-    background-color: antiquewhite;
+.nav{
+    background-color: #48e;
+    margin: auto;
 }
 
-a{
-    display: block;
-    width: 60px;
+.nav__list{
+    margin: 0;
+    text-align: center;
+}
+
+.nav__item{
+    display: inline-block;
+}
+
+.nav__link{
+    color:#fff;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #48e;
+    padding: 10px;
+}
+
+.nav__link:hover{
+    background-color: #59e;
+}
+.link--button{
+    border: #48e;
+    background-color: #fff;
+    padding: 6px 12px;
+    color: #48e;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.link--button:hover{
+    background-color: transparent;
     border: 2px solid #000;
-    margin: 5px;
+    color: #fff;
 }
