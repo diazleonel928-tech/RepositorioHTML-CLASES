@@ -1,0 +1,59 @@
+div{
+    padding:20px;
+}
+
+.l1::before{
+    content: "------>";
+    color: #48e;
+}
+
+.texto::first-letter{
+    color:#832;
+}
+
+.texto::after{
+    content: " ✔";
+    color:#2e4;
+}
+
+.t2::first-line{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.t2::selection{
+    background-color: rgb(252, 191, 179);
+    color:black;
+}
+
+input::placeholder{
+    color: black;
+    font-style: italic;
+}
+
+li::marker{
+    color:#48e;
+}
+
+.lista{
+    border: 2px solid #000;
+}
+
+.lista__item{
+    color:#48e;
+    padding: 5px;
+    list-style: square;
+}
+
+.item--important{
+    color:#484;
+    list-style: georgian;
+}
+
+.item--noimportant{
+    color: #666;
+}
+
+.lista--mala{
+    opacity: 0.3;
+}
