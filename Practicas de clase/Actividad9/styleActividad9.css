@@ -1,0 +1,341 @@
+body{
+    background-color: antiquewhite;
+}
+
+.tabla{
+    border: 2px solid #999;
+    padding: 15px;
+    position: relative;
+}
+
+.tabla2{
+    width: 550px;
+    height: auto;
+    margin-top: 50px;
+    border: 2px solid #999;
+    padding: 15px;
+    position: relative;
+}
+
+.noReactivo {
+    background-color: #4e2;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.noReactivo:hover {
+    background-color: #6f4;
+}
+
+.metalesAlcalinos {
+    background-color: #f66;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.metalesAlcalinos:hover {
+    background-color: #ff7a7a;
+}
+
+.metalesAlcalinoterreos {
+    background-color: #fa0;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.metalesAlcalinoterreos:hover {
+    background-color: #ffc04d;
+}
+
+.metalesTransicion {
+    background-color: #09f;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.metalesTransicion:hover {
+    background-color: #3af;
+}
+
+.metalesPostransicionales {
+    background-color: #8a2be2;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.metalesPostransicionales:hover {
+    background-color: #b57edc;
+}
+
+.metaloides {
+    background-color: #ffd700;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.metaloides:hover {
+    background-color: #fff380;
+}
+
+.noMetales {
+    background-color: #6cf;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.noMetales:hover {
+    background-color: #9df;
+}
+
+.gasesNobles {
+    background-color: #ff66cc;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.gasesNobles:hover {
+    background-color: #ff99dd;
+}
+
+.lantanidos {
+    background-color: #48E;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.lantanidos:hover {
+    background-color: #45E;
+}
+
+.actinoides {
+    background-color: #6b8e23;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.actinoides:hover {
+    background-color: #7fbf3f;
+}
+
+.noMetalesNoReactivos {
+    background-color: #98ff98;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.noMetalesNoReactivos:hover {
+    background-color: #b2ffcc;
+}
+
+.desconocidos {
+    background-color: #ccc;
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.desconocidos:hover {
+    background-color: #e0e0e0;
+}
+
+
+.fila2{
+    position: absolute;
+    left: 60px;
+    top: 55px;
+}
+
+.metalesAlcalinoterreos{
+    border: 2px solid #999;
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.fila3{
+    position: absolute;
+    left: 45px;
+    top: 78px;
+}
+
+.fila4{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila5{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila6{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila7{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila8{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila9{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila10{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila11{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila12{
+    position: absolute;
+    left: 45px;
+    top: 0;
+}
+
+.fila13{
+    position: absolute;
+    left: 90px;
+    top: -78px;
+}
+
+.fila14{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila15{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila16{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila17{
+    position: absolute;
+    left: 45px;
+    top: 0px;
+}
+
+.fila18{
+    position: absolute;
+    left: 45px;
+    top: -40px;
+}
+
+.f2{
+    position: absolute;
+    left: 55px;
+    top: 15px;
+}
+
+.f3{
+    position: absolute;
+    left: 95px;
+    top: 15px;
+}
+
+.f4{
+    position: absolute;
+    left: 175px;
+    top: 15px;
+}
+
+.f5{
+    position: absolute;
+    left: 215px;
+    top: 15px;
+}
+
+.f6{
+    position: absolute;
+    left: 255px;
+    top: 15px;
+}
+
+.f7{
+    position: absolute;
+    left: 295px;
+    top: 15px;
+}
+
+.f8{
+    position: absolute;
+    left: 335px;
+    top: 15px;
+}
+
+.f9{
+    position: absolute;
+    left: 375px;
+    top: 15px;
+}
+
+.f10{
+    position: absolute;
+    left: 415px;
+    top: 15px;
+}
+
+.f11{
+    position: absolute;
+    left: 455px;
+    top: 15px;
+}
+
+.f12{
+    position: absolute;
+    left: 495px;
+    top: 15px;
+}
+
+.f13{
+    position: absolute;
+    left: 535px;
+    top: 15px;
+}
+
+.f14{
+    position: absolute;
+    left: 135px;
+    top: 15px;
+}
