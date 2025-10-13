@@ -1,0 +1,139 @@
+body{
+    margin: 0;
+    font-family: Arial;
+}
+
+
+.noticias{
+    position: relative;
+    width: 200px;
+    height: 400px;
+    margin-left: 20px;
+    border: 2px solid #000;
+    background-color: #ccc;
+    top:20px
+}
+
+.not{
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
+}
+
+.nav{
+    background-color: #48e;
+    margin: auto;
+}
+
+.nav__list{
+    margin: 0;
+    text-align: center;
+}
+
+.nav__item{
+    display: inline-block;
+}
+
+.nav__link{
+    color:#fff;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #48e;
+    padding: 10px;
+}
+
+.nav__link:hover{
+    background-color: #59e;
+}
+.link--button{
+    border: #48e;
+    background-color: #fff;
+    padding: 6px 12px;
+    color: #48e;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.link--button:hover{
+    background-color: transparent;
+    border: 2px solid #000;
+    color: #fff;
+}
+
+.publicidad{
+    border: 3px dotted #e81;
+    width: 205px;
+    height: 300px;
+    margin: 30px 20px;
+    background-color: #c51;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.leyenda{
+    color: #e81;
+}
+
+.articulos{
+    position: relative;
+    bottom: 745px;
+    margin: auto;
+    width: 400px;
+    height: 700px;
+    border: 2px solid;
+}
+
+.articulo{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+h3{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    margin: 0 20px;
+    display: inline-flex;
+}
+
+.columnas{
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    bottom: 1450px;
+    left: 1000px;
+    width: 200px;
+    height: 550px;
+    padding: 15px;
+    border: 2px solid #000;
+}
+
+.col{
+    background-color: #48e;
+
+}
+
+.pie{
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #ccc;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.opcion{
+    outline: 2px solid #000;
+    padding: 10px;
+    width: 60px;
+    height: 50px;
+}
+
+.creador{
+    margin-left: 100px;
+}
