@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #999;
+}
+
+.grid{
+    width: 90vw;
+    margin: auto;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px 400px), 1fr);
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, minmax( 100px 400px, 1fr));
+    gap: 20px;
+}
+
+.grid-item{
+    display: flex;
+    background-color: #48e;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.imagen{
+    grid-column: 1/2;
+    grid-row: 1/4;
+}
+
+.texto{
+    grid-column: 2/3;
+    grid-row: 1/4;
+}
+
+.descripcion{
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+
+.credito{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.glosario{
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
