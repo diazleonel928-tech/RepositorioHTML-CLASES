@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 13</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <center><strong><u><h1>Calculadora de Matematicas Basicas</h1></u></strong></center>
+    <center><strong><i><h2>Actividad 13</h2></i></strong></center>
+     <br>
+    <form action="calculadora.php" method="post">
+    <center>
+        <div>
+            <label for="num1"><strong><i>Ingrese el numero</i></strong></label>
+            <input type="text" name="num1" id="num1" maxlength="5" size="5">
+        </div>
+        <div>
+            <label for="num2"><strong><i>Ingrese el numero</i></strong></label>
+            <input type="text" name="num2" id="num2" maxlength="5" size="5">
+        </div>
+        <div>
+            <br>
+               <label for="operacion">Que tipo de operacion quiere</label>
+               <select name="operacion" id="operacion">
+                   <option value="suma">Suma</option>
+                   <option value="resta">Resta</option>
+                   <option value="division">Division</option>
+                   <option value="Multiplicacion">Multiplicacion</option>
+               </select>
+               <hr>
+               <div>
+                  <input type="submit" value=" Calcular =">
+                  <hr>
+               </div>
+        </div>
+    </center>
+
+</body>
+</html>
