@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>formulario</h1>
+    <div class="container">
+        <a href="../index.html" class="button is-primary">Volver</a>
+        <h1 class="title">Formulario de Operaciones</h1>
+        
+        <form action="procesar.php" method="POST" class="box">
+            <div class="field">
+                <label class="label" for="num1">Número 1:</label>
+                <div class="control">
+                    <input class="input" type="number" name="num1" id="num1" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="num2">Número 2:</label>
+                <div class="control">
+                    <input class="input" type="number" name="num2" id="num2" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Operación:</label>
+                <div class="control">
+                    <label for="suma">Suma</label>
+                    <input type="radio" name="operacion" value="suma" id="suma">
+                    <label for="resta">Resta</label>
+                    <input type="radio" name="operacion" value="resta" id="resta">
+                    <label for="mul">Multiplicación</label>
+                    <input type="radio" name="operacion" value="mul" id="mul">
+                    <label for="div">División</label>
+                    <input type="radio" name="operacion" value="div" id="div">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="button is-primary" type="submit" value="Calcular">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
