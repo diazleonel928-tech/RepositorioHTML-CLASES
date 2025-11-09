@@ -29,7 +29,7 @@ $s->bind_param('s', $admin_email);
 $s->execute();
 $s->store_result();
 if ($s->num_rows == 0) {
-    // obtener id rol admin
+
     $r = $conn->prepare("SELECT id FROM roles WHERE nombre = 'admin'");
     $r->execute();
     $r->bind_result($admin_rol_id);
