@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . 'config_database.php';
-require_once __DIR__ . 'helper.php';
+require_once __DIR__ . '/config_database.php';
+require_once __DIR__ . '/helper.php';
 require_login();
 if ($_SESSION['rol_nombre'] !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
 

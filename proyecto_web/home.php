@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ . 'config_database.php';
-require_once __DIR__ . 'helper.php';
+require_once __DIR__ . '/config_database.php';
+require_once __DIR__ . '/helper.php';
 require_login();
 
 $usuario_id = intval($_SESSION['usuario_id']);
@@ -28,8 +28,8 @@ function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
     <div class="mt-3">
     <a class="btn btn-outline-primary" href="cursos.php">Explorar cursos</a>
     <?php if ($rol_nombre === 'profesor'): ?>
-        <a class="btn btn-outline-warning" href="crear_curso.php">Crear curso</a>
-        <a class="btn btn-outline-info" href="professor_cursos.php">Ver promedios alumnos</a>
+        <a class="btn btn-outline-warning" href="crearCurso.php">Crear curso</a>
+        <a class="btn btn-outline-info" href="profesorCursos.php">Ver promedios alumnos</a>
     <?php endif; ?>
     </div>
 </div>

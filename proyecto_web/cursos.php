@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . 'config_database.php';
-require_once __DIR__ . 'helper.php';
+require_once __DIR__ . '/config_database.php';
+require_once __DIR__ . '/helper.php';
 require_login();
 $usuario_id = intval($_SESSION['usuario_id']);
 $rol = $_SESSION['rol_nombre'] ?? 'alumno';
@@ -11,7 +11,13 @@ $res = $conn->query("SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_i
 $cursos = $res->fetch_all(MYSQLI_ASSOC);
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Cursos</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head><body class="bg-light">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body class="bg-light">
+<div class="container mt-3">
+    <a href="home.php" class="btn btn-secondary mb-3">
+        Volver al inicio
+    </a>
+</div>
 <div class="container mt-4">
 <h4>Cursos disponibles</h4>
 <div class="list-group">
@@ -51,7 +57,7 @@ $cursos = $res->fetch_all(MYSQLI_ASSOC);
             </div>
             <?php endif; ?>
         <?php else: ?>
-            <a href="curso_detalle.php?id=<?=intval($c['id'])?>" class="btn btn-sm btn-outline-primary">Ver</a>
+            <a href="cursoDetalles.php?id=<?=intval($c['id'])?>" class="btn btn-sm btn-outline-primary">Ver</a>
         <?php endif; ?>
         </div>
     </div>
@@ -59,4 +65,5 @@ $cursos = $res->fetch_all(MYSQLI_ASSOC);
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body></html>
+</body>
+</html>

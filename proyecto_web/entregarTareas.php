@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . 'auth_helper.php';
+require_once __DIR__ . '/helper.php';
 require_login();
-require_once __DIR__ . 'config_database.php';
+require_once __DIR__ . '/config_database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') header('Location: home.php');
 $usuario_id = intval($_SESSION['usuario_id']);

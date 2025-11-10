@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . 'config_database.php';
+require_once __DIR__ . '/config_database.php';
 if (empty($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit;

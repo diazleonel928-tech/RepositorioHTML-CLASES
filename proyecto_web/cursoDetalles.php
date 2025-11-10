@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . 'helper.php';
+require_once __DIR__ . '/helper.php';
 require_login();
-require_once __DIR__ . 'config_database.php';
+require_once __DIR__ . '/config_database.php';
 
 $usuario_id = intval($_SESSION['usuario_id']);
 $rol = $_SESSION['rol_nombre'] ?? 'alumno';
