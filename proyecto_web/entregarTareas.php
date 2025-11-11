@@ -1,61 +1,71 @@
 <?php
+session_start();
+require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-require_once __DIR__ . '/config_database.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') header('Location: home.php');
-$usuario_id = intval($_SESSION['usuario_id']);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: cursos.php'); exit; }
+
+$usuario = current_user($pdo);
+$usuario_id = intval($usuario['id']);
 $rol = $_SESSION['rol_nombre'] ?? '';
-if ($rol !== 'alumno') die('Solo alumnos pueden entregar.');
 
 $tarea_id = intval($_POST['tarea_id'] ?? 0);
-if ($tarea_id <= 0) die('Tarea inválida');
+if ($tarea_id <= 0) die('Tarea inválida.');
 
-$st = $conn->prepare("SELECT curso_id FROM tareas WHERE id=?"); $st->bind_param('i',$tarea_id); $st->execute(); $st->bind_result($curso_id);
-if (!$st->fetch()) { $st->close(); die('Tarea no encontrada'); } $st->close();
+if (!validate_csrf_token($_POST['csrf_token'] ?? '')) die('Token CSRF inválido.');
 
-if (!alumno_aprobado_en_curso($conn, $usuario_id, $curso_id)) die('No estás aprobado en el curso.');
+try {
+    $stmt = $pdo->prepare("SELECT t.id, t.curso_id, c.creador_id FROM tareas t JOIN cursos c ON t.curso_id = c.id WHERE t.id = ?");
+    $stmt->execute([$tarea_id]);
+    $tarea = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$tarea) die('Tarea no encontrada.');
 
-$uploadPath = __DIR__ . 'entregas/';
-if (!is_dir($uploadPath)) mkdir($uploadPath, 0755, true);
+    if ($rol !== 'alumno' && $rol !== 'admin') die('Solo alumnos pueden entregar tareas.');
 
-$archivo_final = null;
-if (!empty($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-    $tmp = $_FILES['archivo']['tmp_name'];
-    $name = basename($_FILES['archivo']['name']);
-    $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-    $allowed = ['pdf','doc','docx','zip','txt'];
-    if (!in_array($ext, $allowed)) die('Tipo de archivo no permitido');
-    if ($_FILES['archivo']['size'] > 8 * 1024 * 1024) die('Archivo muy grande');
-    $nuevo = time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-    if (!move_uploaded_file($tmp, $uploadPath . $nuevo)) die('Error al guardar archivo.');
-    $archivo_final = 'uploads/entregas/' . $nuevo;
-}
+    $s = $pdo->prepare("SELECT estado FROM inscripciones WHERE curso_id = ? AND estudiante_id = ?");
+    $s->execute([$tarea['curso_id'], $usuario_id]);
+    $ins = $s->fetch(PDO::FETCH_ASSOC);
+    if (!$ins || $ins['estado'] !== 'APROBADO') die('No estás inscrito/ aprobado en este curso.');
 
-$texto = trim($_POST['texto'] ?? '');
-
-$check = $conn->prepare("SELECT id FROM entregas WHERE tarea_id = ? AND estudiante_id = ?");
-$check->bind_param('ii', $tarea_id, $usuario_id); $check->execute(); $check->bind_result($existing_id);
-if ($check->fetch()) {
-    $check->close();
-    if ($archivo_final) {
-        $upd = $conn->prepare("UPDATE entregas SET archivo = ?, fecha_entregado = NOW(), comentario = ? WHERE id = ?");
-        $upd->bind_param('ssi', $archivo_final, $texto, $existing_id);
-    } else {
-        $upd = $conn->prepare("UPDATE entregas SET fecha_entregado = NOW(), comentario = ? WHERE id = ?");
-        $upd->bind_param('si', $texto, $existing_id);
+    if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
+        die('Error al subir archivo.');
     }
-    $upd->execute(); $upd->close();
-    log_action($conn, $usuario_id, 'actualizar_entrega', 'entregas', $existing_id, ['tarea_id'=>$tarea_id]);
-    header('Location: tareaDetalles.php?id=' . $tarea_id . '&msg=actualizada');
+
+    $uploadDir = __DIR__ . '/uploads';
+    if (!is_dir($uploadDir)) mkdir($uploadDir, 0775, true);
+
+    $file = $_FILES['archivo'];
+    $originalName = basename($file['name']);
+    $ext = pathinfo($originalName, PATHINFO_EXTENSION);
+    $allowed = ['pdf','doc','docx','zip','jpg','jpeg','png','txt','rar'];
+    if ($ext !== '' && !in_array(strtolower($ext), $allowed)) {
+        die('Tipo de archivo no permitido.');
+    }
+
+    $newName = sprintf('tarea_%d_user_%d_%d.%s', $tarea_id, $usuario_id, time(), $ext ?: 'bin');
+    $targetPath = $uploadDir . '/' . $newName;
+    if (!move_uploaded_file($file['tmp_name'], $targetPath)) {
+        die('No se pudo mover el archivo subido.');
+    }
+
+    //$publicPath = 'public/uploads/' . $newName;
+
+    $q = $pdo->prepare("SELECT id FROM entregas WHERE tarea_id = ? AND estudiante_id = ? LIMIT 1");
+    $q->execute([$tarea_id, $usuario_id]);
+    $existing = $q->fetch(PDO::FETCH_ASSOC);
+
+    if ($existing) {
+        $upd = $pdo->prepare("UPDATE entregas SET archivo = ?, fecha_entregado = NOW(), comentario = ?, calificacion = NULL WHERE id = ?");
+        $upd->execute([$publicPath, trim($_POST['comentario'] ?? ''), intval($existing['id'])]);
+    } else {
+        $ins = $pdo->prepare("INSERT INTO entregas (tarea_id, estudiante_id, archivo, fecha_entregado, comentario) VALUES (?, ?, ?, NOW(), ?)");
+        $ins->execute([$tarea_id, $usuario_id, $publicPath, trim($_POST['comentario'] ?? '')]);
+    }
+
+    header('Location: tarea_detalle.php?id=' . $tarea_id . '&msg=entregado');
     exit;
-} else {
-    $check->close();
-    $ins = $conn->prepare("INSERT INTO entregas (tarea_id, estudiante_id, archivo, fecha_entregado, comentario) VALUES (?, ?, ?, NOW(), ?)");
-    $ins->bind_param('iiss', $tarea_id, $usuario_id, $archivo_final, $texto);
-    $ins->execute();
-    $new_id = $ins->insert_id; $ins->close();
-    log_action($conn, $usuario_id, 'crear_entrega', 'entregas', $new_id, ['tarea_id'=>$tarea_id]);
-    header('Location: tareaDetalles.php?id=' . $tarea_id . '&msg=entregada');
-    exit;
+
+} catch (PDOException $e) {
+    die('Error BD: ' . $e->getMessage());
 }

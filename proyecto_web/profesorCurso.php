@@ -1,49 +1,44 @@
 <?php
+session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if ($_SESSION['rol_nombre'] !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
+if (($_SESSION['rol_nombre'] ?? '') !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
 
 $profesor_id = intval($_SESSION['usuario_id']);
-
-$stmt = $conn->prepare("SELECT id, codigo, nombre, descripcion, fecha_creacion FROM cursos WHERE creador_id = ? ORDER BY fecha_creacion DESC");
-$stmt->bind_param('i', $profesor_id);
-$stmt->execute();
-$res = $stmt->get_result();
-$cursos = $res->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
+try {
+    $stmt = $pdo->prepare("SELECT id, codigo, nombre, descripcion, fecha_creacion FROM cursos WHERE creador_id = ? ORDER BY fecha_creacion DESC");
+    $stmt->execute([$profesor_id]);
+    $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error BD: " . $e->getMessage());
+}
+function h($v){ return htmlspecialchars($v, ENT_QUOTES,'UTF-8'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Mis cursos</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head><body class="bg-light">
-<div class="container mt-4">
-<div class="d-flex justify-content-between align-items-center mb-3">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body class="bg-light">
+<div class="container py-4">
     <h3>Mis cursos</h3>
-    <div>
-    <a class="btn btn-success" href="crearCurso.php">Crear curso</a>
-    <a class="btn btn-secondary" href="home.php">Volver</a>
-    </div>
-</div>
-
-<?php if (empty($cursos)): ?>
-    <div class="alert alert-info">Aún no has creado cursos.</div>
-<?php else: ?>
-    <div class="list-group">
-    <?php foreach ($cursos as $c): ?>
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-            <strong><?=htmlspecialchars($c['nombre'])?></strong><br>
-            <small class="text-muted"><?=htmlspecialchars($c['codigo'] ?? '')?> — <?=htmlspecialchars($c['fecha_creacion'])?></small>
-            <div class="small"><?=nl2br(htmlspecialchars($c['descripcion'] ?? ''))?></div>
+    <a class="btn btn-success mb-3" href="crear_curso.php">Crear curso</a>
+    <?php if (empty($cursos)): ?>
+        <div class="alert alert-info">No tienes cursos.</div>
+    <?php else: ?>
+        <div class="list-group">
+        <?php foreach ($cursos as $c): ?>
+            <div class="list-group-item d-flex justify-content-between">
+            <div>
+                <strong><?=h($c['nombre'])?></strong><br><small class="text-muted"><?=h($c['codigo'])?></small>
+                <div class="small"><?=h(mb_strimwidth($c['descripcion'] ?? '',0,150,'...'))?></div>
             </div>
             <div class="text-end">
-            <a class="btn btn-sm btn-primary" href="cursoDetalle.php?id=<?=intval($c['id'])?>">Ver</a>
-            <a class="btn btn-sm btn-warning" href="editarCurso.php?id=<?=intval($c['id'])?>">Editar</a>
-            <a class="btn btn-sm btn-outline-secondary" href="crearTarea.php?curso_id=<?=intval($c['id'])?>">Crear tarea</a>
+                <a class="btn btn-sm btn-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Ver</a>
+                <a class="btn btn-sm btn-warning" href="editarCurso.php?id=<?=intval($c['id'])?>">Editar</a>
             </div>
+            </div>
+        <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
 </div>
 </body>
 </html>

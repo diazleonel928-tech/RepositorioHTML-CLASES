@@ -8,7 +8,6 @@ $profesor_id = intval($_SESSION['usuario_id']);
 $curso_id = intval($_GET['curso_id'] ?? $_POST['curso_id'] ?? 0);
 if ($curso_id <= 0) die('Curso inválido.');
 
-// verificar permiso de creador
 $stmt = $conn->prepare("SELECT creador_id, nombre FROM cursos WHERE id = ?");
 $stmt->bind_param('i', $curso_id); $stmt->execute(); $stmt->bind_result($creador_id, $curso_nombre);
 if (!$stmt->fetch()) { $stmt->close(); die('Curso no encontrado'); } $stmt->close();

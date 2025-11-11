@@ -1,66 +1,78 @@
 <?php
+session_start();
+require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-require_once __DIR__ . '/config_database.php';
 
 $usuario_id = intval($_SESSION['usuario_id']);
-$rol = $_SESSION['rol_nombre'] ?? 'alumno';
+$rol = $_SESSION['rol_nombre'] ?? '';
 $curso_id = intval($_GET['id'] ?? 0);
-if ($curso_id<=0) header('Location: cursos.php');
+if ($curso_id <= 0) header('Location: cursos.php');
 
-$st = $conn->prepare("SELECT id, codigo, nombre, descripcion, creador_id FROM cursos WHERE id = ?");
-$st->bind_param('i', $curso_id); $st->execute(); $st->bind_result($id,$codigo,$nombre,$descripcion,$creador_id);
-if (!$st->fetch()) { $st->close(); die('Curso no encontrado'); } $st->close();
+function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
 
-$prof_name='';
-$rp = $conn->prepare("SELECT nombre_completo FROM usuarios WHERE id = ?");
-$rp->bind_param('i', $creador_id); $rp->execute(); $rp->bind_result($prof_name); $rp->fetch(); $rp->close();
+try {
+    $stmt = $pdo->prepare("SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_id, u.nombre_completo AS creador_nombre FROM cursos c LEFT JOIN usuarios u ON c.creador_id = u.id WHERE c.id = ?");
+    $stmt->execute([$curso_id]);
+    $curso = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$curso) die('Curso no encontrado.');
+    $estado = null;
+    if ($rol === 'alumno') {
+        $s = $pdo->prepare("SELECT estado FROM inscripciones WHERE curso_id = ? AND estudiante_id = ?");
+        $s->execute([$curso_id, $usuario_id]);
+        $r = $s->fetch(PDO::FETCH_ASSOC);
+        $estado = $r['estado'] ?? null;
+    }
+    $t = $pdo->prepare("SELECT id, titulo, descripcion, fecha_entrega, ponderacion FROM tareas WHERE curso_id = ? ORDER BY fecha_entrega ASC");
+    $t->execute([$curso_id]);
+    $tareas = $t->fetchAll(PDO::FETCH_ASSOC);
 
-$estado = null;
-if ($rol === 'alumno') {
-    $s = $conn->prepare("SELECT estado FROM inscripciones WHERE curso_id = ? AND estudiante_id = ?");
-    $s->bind_param('ii', $curso_id, $usuario_id); $s->execute(); $s->bind_result($estado_db);
-    if ($s->fetch()) $estado = $estado_db; $s->close();
+} catch (PDOException $e) {
+    die("Error: " . $e->getMessage());
 }
-
-$tareas = [];
-$qt = $conn->prepare("SELECT id, titulo, descripcion, fecha_entrega, ponderacion FROM tareas WHERE curso_id = ? ORDER BY fecha_entrega ASC");
-$qt->bind_param('i', $curso_id); $qt->execute(); $res=$qt->get_result();
-while ($r = $res->fetch_assoc()) $tareas[] = $r;
-$qt->close();
 ?>
-<!doctype html><html lang="es"><head><meta charset="utf-8"><title><?=htmlspecialchars($nombre)?></title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head><body class="bg-light">
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title><?=h($curso['nombre'])?></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body class="bg-light">
 <div class="container mt-4">
-    <h3><?=htmlspecialchars($nombre)?></h3>
-    <p>Profesor: <?=htmlspecialchars($prof_name)?></p>
-    <p><?=nl2br(htmlspecialchars($descripcion))?></p>
+    <a class="btn btn-secondary mb-3" href="cursos.php">← Volver</a>
+    <h3><?=h($curso['nombre'])?></h3>
+    <p class="small text-muted">Profesor: <?=h($curso['creador_nombre'] ?? '')?></p>
+    <p><?=nl2br(h($curso['descripcion']))?></p>
 
-<?php if ($rol==='alumno'): ?>
-    <h5>Estado: <?=htmlspecialchars($estado ?? 'Sin solicitar')?></h5>
-    <?php if ($estado === 'RECHAZADO'): ?><div class="alert alert-danger">Inscripción rechazada</div><?php endif; ?>
-    <?php if ($estado !== 'APROBADO'): ?><div class="alert alert-warning">No puedes acceder a tareas hasta estar aprobado.</div><?php endif; ?>
-<?php endif; ?>
+    <?php if ($rol === 'alumno' && $estado !== 'APROBADO'): ?>
+        <div class="alert alert-warning">No puedes acceder a tareas hasta que tu inscripción sea aprobada. Estado: <?=h($estado ?? 'Sin solicitar')?></div>
+    <?php endif; ?>
 
-    <h4>Tareas</h4>
-    <?php if (empty($tareas)) echo "<p>No hay tareas</p>"; else ?>
-    <ul class="list-group">
-        <?php foreach ($tareas as $t): ?>
-        <li class="list-group-item d-flex justify-content-between">
+    <h5 class="mt-4">Tareas</h5>
+    <?php if (empty($tareas)): ?>
+        <p class="text-muted">No hay tareas registradas.</p>
+    <?php else: ?>
+        <div class="list-group">
+        <?php foreach ($tareas as $ta): ?>
+            <div class="list-group-item d-flex justify-content-between align-items-center">
             <div>
-            <strong><?=htmlspecialchars($t['titulo'])?></strong><br><small class="text-muted"><?=htmlspecialchars($t['fecha_entrega'])?></small>
+                <strong><?=h($ta['titulo'])?></strong><br><small class="text-muted"><?=h($ta['fecha_entrega'])?></small>
+                <div class="small"><?=h(mb_strimwidth($ta['descripcion'] ?? '', 0, 150, '...'))?></div>
             </div>
             <div>
-            <?php if ($rol==='alumno' && $estado === 'APROBADO'): ?>
-                <a class="btn btn-sm btn-primary" href="tareaDetalles.php?id=<?=intval($t['id'])?>">Ver / Entregar</a>
-            <?php else: ?>
-                <a class="btn btn-sm btn-secondary" href="tareaDetalles.php?id=<?=intval($t['id'])?>">Ver</a>
-            <?php endif; ?>
+                <?php if ($rol === 'alumno' && $estado === 'APROBADO'): ?>
+                <a class="btn btn-sm btn-primary" href="tareaDetalles.php?id=<?=intval($ta['id'])?>">Ver / Entregar</a>
+                <?php else: ?>
+                <a class="btn btn-sm btn-outline-secondary" href="tarea_detalle.php?id=<?=intval($ta['id'])?>">Ver</a>
+                <?php endif; ?>
+                <?php if ($rol === 'profesor' && intval($curso['creador_id']) === $usuario_id): ?>
+                <a class="btn btn-sm btn-warning" href="editarTarea.php?id=<?=intval($ta['id'])?>">Editar</a>
+                <?php endif; ?>
             </div>
-        </li>
+            </div>
         <?php endforeach; ?>
-    </ul>
-<?php end; ?>
+        </div>
+    <?php endif; ?>
 </div>
 </body>
 </html>
