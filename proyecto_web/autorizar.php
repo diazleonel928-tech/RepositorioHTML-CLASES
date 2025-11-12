@@ -24,10 +24,10 @@ if ($email === '' || $pass === '') {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT id, email, password_hash, nombre_completo, rol_id FROM usuarios WHERE email = ? LIMIT 1");
+    $stmt = $pdo->prepare("SELECT id, correo, contrasena_hash, nombre_completo, rol_id FROM usuarios WHERE correo = ? LIMIT 1");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (!$user || !password_verify($pass, $user['password_hash'] ?? '')) {
+    if (!$user || !password_verify($pass, $user['contrasena_hash'] ?? '')) {
         header('Location: login.php?msg=invalid');
         exit;
     }

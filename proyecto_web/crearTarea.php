@@ -3,7 +3,12 @@ session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if (!is_role($pdo, 'profesor')) { http_response_code(403); die('Acceso denegado'); }
+
+$rol = $_SESSION['rol_nombre'] ?? '';
+if ($rol == 'profesor' && $rol == 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 
 $profesor = current_user($pdo);
 $profesor_id = intval($profesor['id']);
@@ -35,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ins = $pdo->prepare("INSERT INTO tareas (curso_id, titulo, descripcion, fecha_entrega, ponderacion, creado_por) VALUES (?, ?, ?, ?, ?, ?)");
             $ins->execute([$curso_id, $titulo, $descripcion, $fecha_entrega, $ponderacion, $profesor_id]);
             $success = true;
-            header('Location: curso_detalle.php?id=' . $curso_id . '&msg=tarea_creada');
+            header('Location: cursoDetalles.php?id=' . $curso_id . '&msg=tarea_creada');
             exit;
         } catch (PDOException $e) {
             $errors[] = 'Error BD: ' . $e->getMessage();
@@ -44,13 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $csrf = generate_csrf_token();
-function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Crear tarea</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container py-4">
-    <a href="curso_detalle.php?id=<?=intval($curso_id)?>" class="btn btn-secondary mb-3">← Volver</a>
+    <a href="cursoDetalles.php?id=<?=intval($curso_id)?>" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Crear tarea — <?=h($curso['nombre'])?></h3>
     <?php foreach ($errors as $e): ?><div class="alert alert-danger"><?=h($e)?></div><?php endforeach; ?>
     <form method="post" class="card p-3">

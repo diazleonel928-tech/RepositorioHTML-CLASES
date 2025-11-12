@@ -1,12 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . '/../config_database.php';
-require_once __DIR__ . '/../app/helpers/auth_helpers.php';
+require_once __DIR__ . '/config_database.php';
+require_once __DIR__ . '/helper.php';
 require_login();
 if (($_SESSION['rol_nombre'] ?? '') !== 'alumno') { http_response_code(403); die('Acceso denegado'); }
 
 $alumno_id = intval($_SESSION['usuario_id']);
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
 
 $stmt = $pdo->prepare("
     SELECT c.nombre, c.codigo, i.estado, i.fecha_inscripcion

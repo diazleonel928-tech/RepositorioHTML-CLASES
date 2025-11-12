@@ -8,7 +8,7 @@ $success = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $email = trim($_POST['correo'] ?? '');
     $pass = $_POST['password'] ?? '';
     $pass2 = $_POST['password2'] ?? '';
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Email inválido.';
 
     if (empty($errors)) {
-        $s = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+        $s = $pdo->prepare("SELECT id FROM usuarios WHERE correo = ?");
         $s->execute([$email]);
         if ($s->fetch()) $errors[] = 'Ya existe una cuenta con ese correo.';
     }
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Rol alumno no encontrado. Crea roles en la base de datos.';
         } else {
             $hash = password_hash($pass, PASSWORD_DEFAULT);
-            $ins = $pdo->prepare("INSERT INTO usuarios (email, password_hash, nombre_completo, rol_id, fecha_suscripcion) VALUES (?, ?, ?, ?, NOW())");
+            $ins = $pdo->prepare("INSERT INTO usuarios (correo, contrasena_hash, nombre_completo, rol_id, fecha_registro) VALUES (?, ?, ?, ?, NOW())");
             try {
                 $ins->execute([$email, $hash, $nombre, $rol_id]);
                 $success = true;
@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Registro</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
@@ -62,7 +61,7 @@ function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
             <?php if (!$success): ?>
             <form method="post">
                 <div class="mb-3"><label class="form-label">Nombre completo</label><input name="nombre" class="form-control" required value="<?=h($_POST['nombre'] ?? '')?>"></div>
-                <div class="mb-3"><label class="form-label">Correo</label><input name="email" type="email" class="form-control" required value="<?=h($_POST['email'] ?? '')?>"></div>
+                <div class="mb-3"><label class="form-label">Correo</label><input name="correo" type="correo" class="form-control" required value="<?=h($_POST['correo'] ?? '')?>"></div>
                 <div class="mb-3"><label class="form-label">Contraseña</label><input name="password" type="password" class="form-control" required></div>
                 <div class="mb-3"><label class="form-label">Repetir contraseña</label><input name="password2" type="password" class="form-control" required></div>
                 <button class="btn btn-success w-100">Registrarme</button>

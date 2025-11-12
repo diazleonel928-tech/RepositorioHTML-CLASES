@@ -3,7 +3,11 @@ session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if (($_SESSION['rol_nombre'] ?? '') !== 'admin') { http_response_code(403); die('Acceso denegado'); }
+
+if (($_SESSION['rol_nombre'] ?? '') !== 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 
 $usuario_id = intval($_SESSION['usuario_id']);
 $usuario_nombre = $_SESSION['usuario_nombre'] ?? 'Administrador';
@@ -11,20 +15,29 @@ $usuario_nombre = $_SESSION['usuario_nombre'] ?? 'Administrador';
 $msg = $_GET['msg'] ?? null;
 
 $users = [];
-$sql = "SELECT u.id, u.correo, u.nombre_completo, r.nombre AS rol_nombre
-        FROM usuarios u LEFT JOIN roles r ON u.rol_id = r.id
-        ORDER BY u.id DESC LIMIT 200";
-$res = $conn->query($sql);
-if ($res) $users = $res->fetch_all(MYSQLI_ASSOC);
-
 $courses = [];
-$sql2 = "SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_id, u.nombre_completo AS creador_nombre, c.fecha_creacion
-        FROM cursos c LEFT JOIN usuarios u ON c.creador_id = u.id
-        ORDER BY c.fecha_creacion DESC LIMIT 200";
-$res2 = $conn->query($sql2);
-if ($res2) $courses = $res2->fetch_all(MYSQLI_ASSOC);
 
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
+try {
+    $sql = "SELECT u.id, u.correo, u.nombre_completo, r.nombre AS rol_nombre
+            FROM usuarios u
+            LEFT JOIN roles r ON u.rol_id = r.id
+            ORDER BY u.id DESC
+            LIMIT 200";
+    $stmt = $pdo->query($sql);
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql2 = "SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_id,
+                    u.nombre_completo AS creador_nombre, c.fecha_creacion
+                FROM cursos c
+                LEFT JOIN usuarios u ON c.creador_id = u.id
+                ORDER BY c.fecha_creacion DESC
+                LIMIT 200";
+    $stmt2 = $pdo->query($sql2);
+    $courses = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die('Error BD: ' . $e->getMessage());
+}
 ?>
 <!doctype html>
 <html lang="es">
@@ -75,7 +88,7 @@ function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
             <div class="card-body">
             <h5 class="card-title">Acciones rápidas</h5>
             <p class="card-text text-muted">Crear curso o revisar logs.</p>
-            <a href="crear_curso.php" class="btn btn-success">Crear curso</a>
+            <a href="crearCurso.php" class="btn btn-success">Crear curso</a>
             </div>
         </div>
         </div>
@@ -122,8 +135,8 @@ function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
                     <td><?=h($c['nombre'])?></td>
                     <td><?=h($c['creador_nombre'] ?? '—')?></td>
                     <td>
-                    <a class="btn btn-sm btn-outline-primary" href="curso_detalle.php?id=<?=intval($c['id'])?>">Ver</a>
-                    <a class="btn btn-sm btn-warning" href="editar_curso.php?id=<?=intval($c['id'])?>">Editar</a>
+                    <a class="btn btn-sm btn-outline-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Ver</a>
+                    <a class="btn btn-sm btn-warning" href="editarCurso.php?id=<?=intval($c['id'])?>">Editar</a>
                     <a class="btn btn-sm btn-outline-danger" href="admin_delete_curso.php?id=<?=intval($c['id'])?>">Eliminar</a>
                     </td>
                 </tr>

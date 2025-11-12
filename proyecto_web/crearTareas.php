@@ -2,8 +2,10 @@
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if ($_SESSION['rol_nombre'] !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
-
+if ($rol == 'profesor' && $rol == 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 $profesor_id = intval($_SESSION['usuario_id']);
 $curso_id = intval($_GET['curso_id'] ?? $_POST['curso_id'] ?? 0);
 if ($curso_id <= 0) die('Curso inválido.');

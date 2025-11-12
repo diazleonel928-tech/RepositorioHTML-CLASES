@@ -1,12 +1,11 @@
 <?php
 session_start();
 require_once __DIR__ . '/config_database.php';
-require_once __DIR__ . '/../app/helpers/auth_helpers.php';
+require_once __DIR__ . '/helper.php';
 require_login();
 
 $user = current_user($pdo);
 $rol = $_SESSION['rol_nombre'] ?? '';
-function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 
 $counts = [];
 try {

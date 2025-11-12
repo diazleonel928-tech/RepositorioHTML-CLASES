@@ -9,8 +9,6 @@ $rol = $_SESSION['rol_nombre'] ?? '';
 $curso_id = intval($_GET['id'] ?? 0);
 if ($curso_id <= 0) header('Location: cursos.php');
 
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
-
 try {
     $stmt = $pdo->prepare("SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_id, u.nombre_completo AS creador_nombre FROM cursos c LEFT JOIN usuarios u ON c.creador_id = u.id WHERE c.id = ?");
     $stmt->execute([$curso_id]);
@@ -39,7 +37,7 @@ try {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container mt-4">
-    <a class="btn btn-secondary mb-3" href="cursos.php">← Volver</a>
+    <a class="btn btn-secondary mb-3" href="cursos.php">Volver</a>
     <h3><?=h($curso['nombre'])?></h3>
     <p class="small text-muted">Profesor: <?=h($curso['creador_nombre'] ?? '')?></p>
     <p><?=nl2br(h($curso['descripcion']))?></p>
@@ -51,6 +49,7 @@ try {
     <h5 class="mt-4">Tareas</h5>
     <?php if (empty($tareas)): ?>
         <p class="text-muted">No hay tareas registradas.</p>
+        <a class="btn btn-secondary mb-3" href="crearTarea.php?curso_id=<?=intval($curso['id'])?>">Agregar Tarea</a>
     <?php else: ?>
         <div class="list-group">
         <?php foreach ($tareas as $ta): ?>
@@ -63,7 +62,7 @@ try {
                 <?php if ($rol === 'alumno' && $estado === 'APROBADO'): ?>
                 <a class="btn btn-sm btn-primary" href="tareaDetalles.php?id=<?=intval($ta['id'])?>">Ver / Entregar</a>
                 <?php else: ?>
-                <a class="btn btn-sm btn-outline-secondary" href="tarea_detalle.php?id=<?=intval($ta['id'])?>">Ver</a>
+                <a class="btn btn-sm btn-outline-secondary" href="tareaDetalles.php?id=<?=intval($ta['id'])?>">Ver</a>
                 <?php endif; ?>
                 <?php if ($rol === 'profesor' && intval($curso['creador_id']) === $usuario_id): ?>
                 <a class="btn btn-sm btn-warning" href="editarTarea.php?id=<?=intval($ta['id'])?>">Editar</a>

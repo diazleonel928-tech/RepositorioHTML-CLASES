@@ -7,8 +7,6 @@ require_login();
 $usuario_id = intval($_SESSION['usuario_id']);
 $rol = $_SESSION['rol_nombre'] ?? 'alumno';
 
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
-
 try {
     $stmt = $pdo->query("SELECT c.id, c.codigo, c.nombre, c.descripcion, c.creador_id, u.nombre_completo AS creador_nombre FROM cursos c LEFT JOIN usuarios u ON c.creador_id = u.id ORDER BY c.fecha_creacion DESC");
     $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,15 +43,15 @@ try {
                 <div class="mt-auto d-flex justify-content-between align-items-center">
                 <?php if ($rol === 'alumno'): ?>
                     <?php if (empty($estado)): ?>
-                    <a class="btn btn-sm btn-primary" href="curso_detalle.php?id=<?=intval($c['id'])?>">Solicitar inscripción</a>
+                    <a class="btn btn-sm btn-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Solicitar inscripción</a>
                     <?php else: ?>
                     <span class="badge <?= $estado==='APROBADO' ? 'bg-success' : ($estado==='PENDIENTE' ? 'bg-warning text-dark' : 'bg-secondary') ?>">
                         <?=h($estado)?>
                     </span>
-                    <a class="btn btn-sm btn-outline-primary" href="curso_detalle.php?id=<?=intval($c['id'])?>">Ver</a>
+                    <a class="btn btn-sm btn-outline-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Ver</a>
                     <?php endif; ?>
                 <?php else: ?>
-                    <a class="btn btn-sm btn-outline-primary" href="curso_detalle.php?id=<?=intval($c['id'])?>">Ver</a>
+                    <a class="btn btn-sm btn-outline-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Ver</a>
                 <?php endif; ?>
                 </div>
             </div>

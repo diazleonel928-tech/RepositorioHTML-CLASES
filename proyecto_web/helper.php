@@ -10,11 +10,17 @@ function require_login() {
     }
 }
 
+if (!function_exists('h')) {
+    function h($v) {
+        return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8');
+    }
+}
+
 /** @return array|null */
 function current_user(PDO $pdo) {
     if (empty($_SESSION['usuario_id'])) return null;
     $id = intval($_SESSION['usuario_id']);
-    $stmt = $pdo->prepare("SELECT id, email, nombre_completo, rol_id FROM usuarios WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT id, correo, nombre_completo, rol_id FROM usuarios WHERE id = ?");
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
 }

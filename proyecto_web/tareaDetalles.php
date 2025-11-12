@@ -44,14 +44,13 @@ if ($rol === 'profesor' && intval($tarea['creador_id']) === $usuario_id || $rol 
     $entregas = $q->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 $csrf = generate_csrf_token();
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title><?=h($tarea['titulo'])?></title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container py-4">
-    <a class="btn btn-secondary mb-3" href="curso_detalle.php?id=<?=intval($curso_id)?>">← Volver al curso</a>
+    <a class="btn btn-secondary mb-3" href="cursoDetalles.php?id=<?=intval($curso_id)?>">← Volver al curso</a>
     <div class="card mb-3">
         <div class="card-body">
         <h4><?=h($tarea['titulo'])?></h4>

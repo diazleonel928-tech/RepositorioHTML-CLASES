@@ -3,8 +3,10 @@ session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if (($_SESSION['rol_nombre'] ?? '') !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
-
+if ($rol == 'profesor' && $rol == 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 $curso_id = intval($_GET['id'] ?? 0);
 if ($curso_id <= 0) die('Curso inválido.');
 $profesor_id = intval($_SESSION['usuario_id']);
@@ -34,13 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Editar curso</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container mt-4">
-    <a href="profesorCursos.php" class="btn btn-secondary mb-3">← Volver</a>
+    <a href="profesorCurso.php" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Editar curso</h3>
     <?php foreach ($errors as $e): ?><div class="alert alert-danger"><?=h($e)?></div><?php endforeach; ?>
     <form method="post">

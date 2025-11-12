@@ -3,7 +3,10 @@ session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
 require_login();
-if (($_SESSION['rol_nombre'] ?? '') !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
+if ($rol == 'profesor' && $rol == 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 
 $profesor_id = intval($_SESSION['usuario_id']);
 try {
@@ -13,12 +16,12 @@ try {
 } catch (PDOException $e) {
     die("Error BD: " . $e->getMessage());
 }
-function h($v){ return htmlspecialchars($v, ENT_QUOTES,'UTF-8'); }
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><title>Mis cursos</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container py-4">
+    <a href="home.php" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Mis cursos</h3>
     <a class="btn btn-success mb-3" href="crear_curso.php">Crear curso</a>
     <?php if (empty($cursos)): ?>
