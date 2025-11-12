@@ -2,7 +2,6 @@
 session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
-//require_once __DIR__ . '/../app/helpers/file_helpers.php'; Esto en caso de ser necesario
 require_login();
 
 $usuario = current_user($pdo);
