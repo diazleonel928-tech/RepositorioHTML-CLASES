@@ -43,7 +43,7 @@ try {
                 <div class="mt-auto d-flex justify-content-between align-items-center">
                 <?php if ($rol === 'alumno'): ?>
                     <?php if (empty($estado)): ?>
-                    <a class="btn btn-sm btn-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Solicitar inscripción</a>
+                    <a class="btn btn-sm btn-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Revisar curso</a>
                     <?php else: ?>
                     <span class="badge <?= $estado==='APROBADO' ? 'bg-success' : ($estado==='PENDIENTE' ? 'bg-warning text-dark' : 'bg-secondary') ?>">
                         <?=h($estado)?>

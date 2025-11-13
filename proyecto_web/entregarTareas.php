@@ -49,8 +49,6 @@ try {
         die('No se pudo mover el archivo subido.');
     }
 
-    //$publicPath = 'public/uploads/' . $newName;
-
     $q = $pdo->prepare("SELECT id FROM entregas WHERE tarea_id = ? AND estudiante_id = ? LIMIT 1");
     $q->execute([$tarea_id, $usuario_id]);
     $existing = $q->fetch(PDO::FETCH_ASSOC);
@@ -63,7 +61,7 @@ try {
         $ins->execute([$tarea_id, $usuario_id, $publicPath, trim($_POST['comentario'] ?? '')]);
     }
 
-    header('Location: tarea_detalle.php?id=' . $tarea_id . '&msg=entregado');
+    header('Location: tareaDetalles.php?id=' . $tarea_id . '&msg=entregado');
     exit;
 
 } catch (PDOException $e) {

@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container mt-4">
-    <a href="profesor_mis_cursos.php" class="btn btn-secondary mb-3">← Volver</a>
+    <a href="home.php" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Crear curso</h3>
     <?php foreach ($errors as $e): ?><div class="alert alert-danger"><?=h($e)?></div><?php endforeach; ?>
     <form method="post">

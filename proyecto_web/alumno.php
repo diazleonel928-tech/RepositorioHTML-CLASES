@@ -27,11 +27,11 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3>Panel del Alumno</h3>
-        <a href="logout.php" class="btn btn-outline-danger">Cerrar sesión</a>
+        <a href="login.php" class="btn btn-outline-danger">Cerrar sesión</a>
     </div>
 
     <a href="cursos.php" class="btn btn-primary mb-3">Ver cursos disponibles</a>
-
+    <a href="profesorSolicitud.php" class="btn btn-warning mb-3">Solicitar ser profesor</a>
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">Mis inscripciones</div>
         <div class="card-body">

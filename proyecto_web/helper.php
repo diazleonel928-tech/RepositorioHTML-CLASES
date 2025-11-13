@@ -1,7 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-function h($v) { return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 
 function require_login() {
     if (empty($_SESSION['usuario_id'])) {

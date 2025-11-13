@@ -32,7 +32,7 @@ function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
     <body class="bg-light">
 <div class="container mt-4">
-    <a href="curso_detalle.php?id=<?=intval($info['curso_id'])?>" class="btn btn-secondary mb-3">← Volver</a>
+    <a href="cursoDetalles.php?id=<?=intval($info['curso_id'])?>" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Entregas tarea <?=intval($tarea_id)?></h3>
     <div class="table-responsive">
         <table class="table table-sm table-hover">
@@ -45,7 +45,7 @@ function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
             <td><?=h($r['fecha_entregado'])?></td>
             <td><?= $r['calificacion'] !== null ? h($r['calificacion']) : '—' ?></td>
             <td>
-                <form method="post" action="calificar_entrega.php" class="d-inline">
+                <form method="post" action="calificarEntrega.php" class="d-inline">
                 <input type="hidden" name="entrega_id" value="<?=intval($r['id'])?>">
                 <input name="calificacion" type="number" step="0.1" min="0" max="100" class="form-control form-control-sm d-inline-block" style="width:90px" placeholder="0-100" value="<?=h($r['calificacion'])?>">
                 <input name="comentario" class="form-control form-control-sm d-inline-block" style="width:200px" value="<?=h($r['comentario'])?>">

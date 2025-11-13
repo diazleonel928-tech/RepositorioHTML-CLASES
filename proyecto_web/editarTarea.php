@@ -46,7 +46,7 @@ function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
 <body class="bg-light">
 <div class="container py-4">
-    <a href="curso_detalle.php?id=<?=intval($t['curso_id'])?>" class="btn btn-secondary mb-3">← Volver</a>
+    <a href="cursoDetalles.php?id=<?=intval($t['curso_id'])?>" class="btn btn-secondary mb-3">← Volver</a>
     <h3>Editar tarea — <?=h($t['curso_nombre'])?></h3>
     <?php foreach ($errors as $e): ?><div class="alert alert-danger"><?=h($e)?></div><?php endforeach; ?>
     <form method="post" class="card p-3">
@@ -59,4 +59,5 @@ function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
         <button class="btn btn-primary">Guardar cambios</button>
     </form>
 </div>
-</body></html>
+</body>
+</html>

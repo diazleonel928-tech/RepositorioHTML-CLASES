@@ -5,7 +5,7 @@ require_once __DIR__ . '/helper.php';
 require_login();
 if (($_SESSION['rol_nombre'] ?? '') !== 'admin') { http_response_code(403); die('Acceso denegado'); }
 
-$stmt = $pdo->query("SELECT s.*, u.nombre_completo, u.email FROM profesor_solicitudes s JOIN usuarios u ON s.usuario_id = u.id WHERE s.estado = 'PENDIENTE' ORDER BY s.fecha_solicitud ASC");
+$stmt = $pdo->query("SELECT s.*, u.nombre_completo, u.correo FROM profesor_solicitudes s JOIN usuarios u ON s.usuario_id = u.id WHERE s.estado = 'PENDIENTE' ORDER BY s.fecha_solicitud ASC");
 $solicitudes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 function h($v){ return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }

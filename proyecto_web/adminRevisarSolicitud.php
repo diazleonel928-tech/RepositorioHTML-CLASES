@@ -41,7 +41,7 @@ try {
     }
 
     $pdo->commit();
-    header('Location: admin_profesor_requests.php?msg=ok');
+    header('Location: adminSolicitudes.php?msg=ok');
     exit;
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();

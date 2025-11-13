@@ -2,9 +2,18 @@
 session_start();
 require_once __DIR__ . '/config_database.php';
 require_once __DIR__ . '/helper.php';
-require_login();
-if (!es_admin()) { http_response_code(403); die('Acceso denegado'); }
 
+if (!function_exists('h_local')) {
+    function h_local($v) {
+        return h($v);
+    }
+}
+
+require_login();
+if (($_SESSION['rol_nombre'] ?? '') !== 'admin') {
+    http_response_code(403);
+    die('Acceso denegado');
+}
 $uid = intval($_GET['id'] ?? $_POST['id'] ?? 0);
 if ($uid <= 0) { header('Location: admin.php?msg=invalid'); exit; }
 

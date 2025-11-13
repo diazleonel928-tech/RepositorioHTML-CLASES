@@ -6,7 +6,6 @@ require_login();
 if (($_SESSION['rol_nombre'] ?? '') !== 'profesor') { http_response_code(403); die('Acceso denegado'); }
 
 $profesor_id = intval($_SESSION['usuario_id']);
-function h($v){ return htmlspecialchars($v, ENT_QUOTES, 'UTF-8'); }
 
 $stmt = $pdo->prepare("SELECT id, codigo, nombre, fecha_creacion FROM cursos WHERE creador_id = ?");
 $stmt->execute([$profesor_id]);
@@ -23,11 +22,11 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h3>Panel del Profesor</h3>
-        <a href="logout.php" class="btn btn-outline-danger">Cerrar sesión</a>
+        <a href="login.php" class="btn btn-outline-danger">Cerrar sesión</a>
     </div>
 
-    <a href="crear_curso.php" class="btn btn-primary mb-3">+ Crear nuevo curso</a>
-    <a href="profesor_inscripciones.php" class="btn btn-warning mb-3">Ver solicitudes pendientes</a>
+    <a href="crearCurso.php" class="btn btn-primary mb-3">+ Crear nuevo curso</a>
+    <a href="profesorInscripciones.php" class="btn btn-warning mb-3">Ver solicitudes pendientes</a>
 
     <div class="card shadow-sm">
         <div class="card-header bg-dark text-white">Tus cursos</div>
@@ -44,8 +43,8 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><?=h($c['nombre'])?></td>
                 <td><?=h($c['fecha_creacion'])?></td>
                 <td>
-                    <a href="ver_curso.php?id=<?=h($c['id'])?>" class="btn btn-sm btn-success">Ver</a>
-                    <a href="modificar_curso.php?id=<?=h($c['id'])?>" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="cursoDetalles.php?id=<?=h($c['id'])?>" class="btn btn-sm btn-success">Ver</a>
+                    <a href="editarCurso.php?id=<?=h($c['id'])?>" class="btn btn-sm btn-primary">Editar</a>
                 </td>
                 </tr>
             <?php endforeach; ?>

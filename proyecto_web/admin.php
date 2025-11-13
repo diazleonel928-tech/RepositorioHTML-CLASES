@@ -38,6 +38,8 @@ try {
 } catch (PDOException $e) {
     die('Error BD: ' . $e->getMessage());
 }
+
+$csrf = generate_csrf_token();
 ?>
 <!doctype html>
 <html lang="es">
@@ -89,6 +91,7 @@ try {
             <h5 class="card-title">Acciones rápidas</h5>
             <p class="card-text text-muted">Crear curso o revisar logs.</p>
             <a href="crearCurso.php" class="btn btn-success">Crear curso</a>
+            <a href="adminRevisarSolicitud.php" class="btn btn-warning mb-3">Ver solicitudes pendientes</a>
             </div>
         </div>
         </div>
@@ -109,7 +112,11 @@ try {
                     <td>
                     <a class="btn btn-sm btn-outline-primary" href="admin_edit_user.php?id=<?=intval($u['id'])?>">Editar</a>
                     <?php if (intval($u['id']) !== $usuario_id): ?>
-                        <a class="btn btn-sm btn-outline-danger" href="admin_delete_user.php?id=<?=intval($u['id'])?>">Eliminar</a>
+                        <form method="post" action="admin_delete_user.php" style="display:inline-block; margin:0 4px;" onsubmit="return confirm('¿Eliminar usuario <?= addslashes($u['nombre_completo']) ?>?');">
+                            <input type="hidden" name="csrf_token" value="<?=h($csrf)?>">
+                            <input type="hidden" name="user_id" value="<?=intval($u['id'])?>">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                        </form>
                     <?php else: ?>
                         <span class="badge bg-secondary">Tu cuenta</span>
                     <?php endif; ?>
@@ -137,7 +144,11 @@ try {
                     <td>
                     <a class="btn btn-sm btn-outline-primary" href="cursoDetalles.php?id=<?=intval($c['id'])?>">Ver</a>
                     <a class="btn btn-sm btn-warning" href="editarCurso.php?id=<?=intval($c['id'])?>">Editar</a>
-                    <a class="btn btn-sm btn-outline-danger" href="admin_delete_curso.php?id=<?=intval($c['id'])?>">Eliminar</a>
+                    <form method="post" action="admin_delete_curso.php" style="display:inline-block; margin:0 4px;" onsubmit="return confirm('¿Eliminar curso <?= addslashes($c['nombre']) ?>? Esta acción eliminará tareas y entregas asociadas.');">
+                        <input type="hidden" name="csrf_token" value="<?=h($csrf)?>">
+                        <input type="hidden" name="curso_id" value="<?=intval($c['id'])?>">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                    </form>
                     </td>
                 </tr>
                 <?php endforeach; ?>

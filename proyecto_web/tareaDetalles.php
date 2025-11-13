@@ -77,7 +77,7 @@ $csrf = generate_csrf_token();
                 <p class="text-muted">Aún no has entregado esta tarea.</p>
             <?php endif; ?>
 
-            <form method="post" action="entregar_tarea.php" enctype="multipart/form-data">
+            <form method="post" action="entregarTareas.php" enctype="multipart/form-data">
                 <input type="hidden" name="tarea_id" value="<?=intval($tarea_id)?>">
                 <input type="hidden" name="csrf_token" value="<?=h($csrf)?>">
                 <div class="mb-3">
@@ -112,7 +112,7 @@ $csrf = generate_csrf_token();
                     <td><?= $e['calificacion'] !== null ? h($e['calificacion']) : '—' ?></td>
                     <td><?=h($e['comentario'])?></td>
                     <td>
-                        <a href="listar_entregas.php?tarea_id=<?=intval($tarea_id)?>" class="btn btn-sm btn-outline-primary">Abrir</a>
+                        <a href="listaEntregas.php?tarea_id=<?=intval($tarea_id)?>" class="btn btn-sm btn-outline-primary">Abrir</a>
                     </td>
                     </tr>
                 <?php endforeach; ?>

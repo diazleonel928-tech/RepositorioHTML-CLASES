@@ -32,7 +32,7 @@ if ($calificacion === null || $calificacion === '') {
 try {
     $upd = $pdo->prepare("UPDATE entregas SET calificacion = ?, comentario = ? WHERE id = ?");
     $upd->execute([$cal, $comentario, $entrega_id]);
-    header('Location: listar_entregas.php?tarea_id=' . intval($info['tarea_id']));
+    header('Location: listaEntregas.php?tarea_id=' . intval($info['tarea_id']));
     exit;
 } catch (PDOException $e) {
     die('Error al guardar: ' . $e->getMessage());
