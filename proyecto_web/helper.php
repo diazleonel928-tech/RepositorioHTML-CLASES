@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 
 function require_login() {
     if (empty($_SESSION['usuario_id'])) {
-        header('Location: login.php?msg=login_required');
+        header("Location: login.php");
         exit;
     }
 }
